@@ -77,17 +77,18 @@ export default function Contact() {
   ]
 
   return (
-    <section id="contact" className="py-24 px-6 bg-slate-50">
+    <section id="contact" className="py-24 px-6 bg-slate-950">
       <div className="w-full max-w-[1100px] mx-auto">
         {/* Heading */}
         <div className="mb-14">
-          <p className="text-sm font-semibold tracking-widest text-blue-600 uppercase mb-3">
+          <p className="font-mono text-sm font-semibold tracking-widest text-blue-400 uppercase mb-3">
+            <span className="opacity-50 mr-1">&gt;</span>
             {t.sectionLabel}
           </p>
-          <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-4">
+          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
             {t.heading}
           </h2>
-          <p className="text-slate-500 text-lg max-w-xl">
+          <p className="text-slate-400 text-lg max-w-xl">
             {t.description}
           </p>
         </div>
@@ -99,19 +100,17 @@ export default function Contact() {
               key={item.label}
               href={item.href}
               target={item.href.startsWith('mailto') ? undefined : '_blank'}
-              rel={
-                item.href.startsWith('mailto') ? undefined : 'noopener noreferrer'
-              }
-              className="group flex flex-col gap-4 p-6 bg-white rounded-xl border border-slate-200 hover:border-blue-200 hover:shadow-md transition-all duration-200"
+              rel={item.href.startsWith('mailto') ? undefined : 'noopener noreferrer'}
+              className="group flex flex-col gap-4 p-6 bg-white/5 backdrop-blur rounded-xl border border-white/10 hover:border-blue-500/30 hover:bg-white/8 transition-all duration-300"
             >
-              <span className="text-slate-400 group-hover:text-blue-600 transition-colors duration-200">
+              <span className="text-slate-500 group-hover:text-blue-400 transition-colors duration-200">
                 {item.icon}
               </span>
               <div>
-                <p className="text-xs font-semibold tracking-widest text-slate-400 uppercase mb-1">
+                <p className="font-mono text-xs font-semibold tracking-widest text-slate-500 uppercase mb-1">
                   {item.label}
                 </p>
-                <p className="text-sm font-medium text-slate-700 group-hover:text-blue-600 transition-colors duration-200 break-all">
+                <p className="text-sm font-medium text-slate-300 group-hover:text-blue-400 transition-colors duration-200 break-all">
                   {item.value}
                 </p>
               </div>

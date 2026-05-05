@@ -26,13 +26,6 @@ export interface Project {
   liveUrl?: string
 }
 
-export interface Experience {
-  company: string
-  role: string
-  period: string
-  description: string
-}
-
 export interface Contact {
   email: string
   linkedIn: string

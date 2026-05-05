@@ -13,7 +13,7 @@ export const experiences: Experience[] = [
       'Developed custom JavaScript integration logic to synchronize data between HubSpot/DealHub and customer internal systems.',
       'Migrated the ElixirSync integration from SAP C4C v1 to SAP C4C v2.',
     ],
-    technologies: ['TypeScript', 'JavaScript', 'HubSpot', 'Spring', 'Mistral AI', 'SAP C4C', 'N8N'],
+    technologies: ['TypeScript', 'JavaScript', 'HubSpot', 'Spring', 'Mistral AI', 'SAP C4C'],
   },
   {
     company: 'KPMG Business Services',
@@ -26,7 +26,7 @@ export const experiences: Experience[] = [
       'Active participation in Agile development cycles, including sprint planning, daily meetings, and retrospectives.',
       'Support to the product owner in analyzing business requirements.',
     ],
-    technologies: ['React', 'JavaScript', 'Java', 'Hibernate', 'JBoss', 'Oracle SQL', 'Git', 'Cypress', 'Apache Camel'],
+    technologies: ['React', 'JavaScript', 'Java', 'Hibernate', 'JBoss', 'Oracle SQL', 'Git', 'Cypress'],
   },
   {
     company: 'KPMG Business Services',
@@ -38,7 +38,7 @@ export const experiences: Experience[] = [
       'Implementation and management of tracked archiving and production databases.',
       'Interaction and collaboration with application software suppliers.',
     ],
-    technologies: ['Oracle SQL', 'Git'],
+    technologies: ['Oracle SQL', 'VBA'],
   },
   {
     company: 'KPMG Italy Fides Administrative Services',

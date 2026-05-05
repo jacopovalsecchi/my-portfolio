@@ -64,3 +64,15 @@ types/         # TypeScript interfaces
 - Centered layout, max-width 1100px, mobile-first
 - Subtle animations: fade-in on scroll, hover effects on cards and links
 
+## Visual Theme
+
+The portfolio should feel like a modern developer tool, not a generic corporate site.
+
+- Dark background as default (#0f172a slate-900 or #111827 gray-900)
+- Accent color: electric blue (#3b82f6) or cyan (#06b6d4)
+- Monospace font for name/role (e.g. JetBrains Mono, Fira Code)
+- Code-inspired details: subtle grid background, terminal-style elements,
+  blinking cursor on Hero title, syntax highlight colors for skill badges
+- Thin borders with low opacity (border-white/10)
+- Glassmorphism cards: bg-white/5 backdrop-blur border border-white/10
+- Smooth transitions everywhere (transition-all duration-300)

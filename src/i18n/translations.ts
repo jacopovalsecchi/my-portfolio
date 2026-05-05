@@ -15,6 +15,14 @@ export const translations = {
         secondary: 'Contact Me',
       },
     },
+    skills: {
+      title: 'Skills',
+      categories: {
+        Frontend: 'Frontend',
+        Backend: 'Backend',
+        Tools: 'Tools & Platforms',
+      },
+    },
     experience: {
       title: 'Experience',
       present: 'Present',
@@ -42,13 +50,21 @@ export const translations = {
         secondary: 'Contattami',
       },
     },
+    skills: {
+      title: 'Competenze',
+      categories: {
+        Frontend: 'Frontend',
+        Backend: 'Backend',
+        Tools: 'Strumenti & Piattaforme',
+      },
+    },
     experience: {
-      title: 'Esperienza',
+      title: 'Esperienze',
       present: 'Presente',
     },
     contact: {
       sectionLabel: 'Contatti',
-      heading: 'Scrivimi',
+      heading: 'Contattami',
       description:
         'Disponibile per nuove opportunità. Contattami tramite uno dei canali qui sotto.',
     },
