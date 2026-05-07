@@ -106,7 +106,7 @@ export default function Skills() {
   const t = translations[language].skills
 
   return (
-    <section id="skills" className="py-20 bg-slate-950 bg-grid">
+    <section id="skills" className="pt-8 pb-20 bg-slate-950 bg-grid">
       <div className="max-w-[1100px] mx-auto px-4 sm:px-6">
         {/* Heading */}
         <motion.div

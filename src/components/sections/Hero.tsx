@@ -36,7 +36,7 @@ export default function Hero() {
   const postNameDelay = 1.05
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center px-6 pt-16 pb-8 bg-slate-950 bg-grid overflow-hidden">
+    <section className="relative flex items-center justify-center px-6 pt-28 pb-6 bg-slate-950 bg-grid overflow-hidden">
       {/* Ambient glow */}
       <div className="absolute top-0 left-0 w-[600px] h-[600px] bg-blue-600/10 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2 pointer-events-none" />
 
@@ -76,7 +76,7 @@ export default function Hero() {
 
           {/* Description */}
           <motion.p
-            className="text-lg sm:text-xl text-slate-400 max-w-2xl mb-10 leading-relaxed"
+            className="text-lg sm:text-xl text-slate-400 max-w-2xl mb-6 leading-relaxed"
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.55, delay: postNameDelay, ease: 'easeOut' }}
@@ -139,7 +139,7 @@ export default function Hero() {
           {/* Glow */}
           <div className="absolute inset-0 rounded-2xl bg-blue-500/10 blur-xl pointer-events-none" />
           {/* Image */}
-          <div className="relative w-52 sm:w-64 lg:w-72 aspect-square rounded-2xl overflow-hidden ring-1 ring-white/10 shadow-2xl shadow-blue-900/40">
+          <div className="relative w-44 sm:w-52 lg:w-60 aspect-square rounded-2xl overflow-hidden ring-1 ring-white/10 shadow-2xl shadow-blue-900/40">
             <img
               src={profileImg}
               alt={hero.name}
