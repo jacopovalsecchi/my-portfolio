@@ -58,7 +58,7 @@ export default function Hero() {
 
           {/* Name — letter by letter */}
           <motion.h1
-            className="font-mono text-5xl sm:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6"
+            className="font-mono text-3xl sm:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6"
             variants={letterContainerVariants}
             initial="hidden"
             animate="visible"
