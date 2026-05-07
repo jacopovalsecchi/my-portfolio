@@ -76,3 +76,10 @@ The portfolio should feel like a modern developer tool, not a generic corporate 
 - Thin borders with low opacity (border-white/10)
 - Glassmorphism cards: bg-white/5 backdrop-blur border border-white/10
 - Smooth transitions everywhere (transition-all duration-300)
+
+## Animations
+- Use Framer Motion for all animations
+- Fade-in on scroll for every section
+- Stagger children animations for lists and cards
+- Smooth hover effects on interactive elements
+- No abrupt transitions, always use ease-in-out

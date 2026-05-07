@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { motion } from 'framer-motion'
 import { skills } from '../../data/skills'
 import type { Skill } from '../../types'
 import { useLanguage } from '../../context/LanguageContext'
@@ -25,44 +25,50 @@ const CATEGORY_STYLES: Record<Skill['category'], { badge: string; accent: string
 type Category = Skill['category']
 const CATEGORIES: Category[] = ['Frontend', 'Backend', 'Tools']
 
+const sectionHeadingVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
+}
+
+const gridContainerVariants = {
+  hidden: {},
+  visible: {
+    transition: { staggerChildren: 0.12, delayChildren: 0.1 },
+  },
+}
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 24 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
+}
+
+const badgeContainerVariants = {
+  hidden: {},
+  visible: {
+    transition: { staggerChildren: 0.04 },
+  },
+}
+
+const badgeVariants = {
+  hidden: { opacity: 0, scale: 0.85 },
+  visible: { opacity: 1, scale: 1, transition: { duration: 0.3, ease: 'easeOut' } },
+}
+
 function CategoryCard({
   category,
   categoryLabel,
   items,
-  index,
 }: {
   category: Category
   categoryLabel: string
   items: Skill[]
-  index: number
 }) {
-  const ref = useRef<HTMLDivElement>(null)
-  const [visible, setVisible] = useState(false)
   const styles = CATEGORY_STYLES[category]
 
-  useEffect(() => {
-    const el = ref.current
-    if (!el) return
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setVisible(true)
-          observer.disconnect()
-        }
-      },
-      { threshold: 0.1 },
-    )
-    observer.observe(el)
-    return () => observer.disconnect()
-  }, [])
-
   return (
-    <div
-      ref={ref}
-      className={`bg-white/5 backdrop-blur border border-white/10 rounded-xl p-6 hover:border-white/20 transition-all duration-700 ease-out ${
-        visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
-      }`}
-      style={{ transitionDelay: `${index * 100}ms` }}
+    <motion.div
+      variants={cardVariants}
+      className="bg-white/5 backdrop-blur border border-white/10 rounded-xl p-6 hover:border-white/20 transition-colors duration-300"
     >
       {/* Category header */}
       <div className="flex items-center gap-2 mb-5">
@@ -72,18 +78,26 @@ function CategoryCard({
         </h3>
       </div>
 
-      {/* Badges */}
-      <div className="flex flex-wrap gap-2">
+      {/* Badges with stagger */}
+      <motion.div
+        className="flex flex-wrap gap-2"
+        variants={badgeContainerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: '-40px' }}
+      >
         {items.map((skill) => (
-          <span
+          <motion.span
             key={skill.name}
-            className={`font-mono text-xs font-medium px-2.5 py-1 rounded-md transition-all duration-200 hover:scale-105 ${styles.badge}`}
+            variants={badgeVariants}
+            whileHover={{ scale: 1.05 }}
+            className={`font-mono text-xs font-medium px-2.5 py-1 rounded-md cursor-default ${styles.badge}`}
           >
             {skill.name}
-          </span>
+          </motion.span>
         ))}
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   )
 }
 
@@ -94,7 +108,14 @@ export default function Skills() {
   return (
     <section id="skills" className="py-20 bg-slate-950 bg-grid">
       <div className="max-w-[1100px] mx-auto px-4 sm:px-6">
-        <div className="mb-12 text-center">
+        {/* Heading */}
+        <motion.div
+          className="mb-12 text-center"
+          variants={sectionHeadingVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-60px' }}
+        >
           <p className="font-mono text-sm font-semibold tracking-widest text-blue-400 uppercase mb-3">
             <span className="opacity-50 mr-1">&gt;</span>
             {t.title}
@@ -102,19 +123,25 @@ export default function Skills() {
           <h2 className="text-3xl font-bold text-white tracking-tight">
             {t.title}
           </h2>
-        </div>
+        </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {CATEGORIES.map((category, index) => (
+        {/* Cards grid with stagger */}
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-3 gap-6"
+          variants={gridContainerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-60px' }}
+        >
+          {CATEGORIES.map((category) => (
             <CategoryCard
               key={category}
               category={category}
               categoryLabel={t.categories[category]}
               items={skills.filter((s) => s.category === category)}
-              index={index}
             />
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   )

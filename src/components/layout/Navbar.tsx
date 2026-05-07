@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { motion } from 'framer-motion'
 import { navLinks } from '../../data/navigation'
 import { useLanguage } from '../../context/LanguageContext'
 import { translations } from '../../i18n/translations'
@@ -8,6 +9,23 @@ const LANGUAGES: { code: Language; flag: string; label: string }[] = [
   { code: 'en', flag: '🇬🇧', label: 'EN' },
   { code: 'it', flag: '🇮🇹', label: 'IT' },
 ]
+
+const navbarVariants = {
+  hidden: { y: -64, opacity: 0 },
+  visible: { y: 0, opacity: 1, transition: { duration: 0.5, ease: 'easeOut' } },
+}
+
+const navContentVariants = {
+  hidden: {},
+  visible: {
+    transition: { staggerChildren: 0.07, delayChildren: 0.35 },
+  },
+}
+
+const navItemVariants = {
+  hidden: { opacity: 0, y: -8 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: 'easeOut' } },
+}
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
@@ -64,8 +82,11 @@ export default function Navbar() {
   }
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+    <motion.header
+      variants={navbarVariants}
+      initial="hidden"
+      animate="visible"
+      className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${
         scrolled
           ? 'bg-slate-950/95 backdrop-blur-sm border-b border-white/10'
           : 'bg-transparent'
@@ -73,25 +94,34 @@ export default function Navbar() {
     >
       <nav className="max-w-[1100px] mx-auto px-6 h-16 flex items-center justify-between">
         {/* Brand */}
-        <a
+        <motion.a
           href="#"
           onClick={(e) => {
             e.preventDefault()
             window.scrollTo({ top: 0, behavior: 'smooth' })
           }}
           className="font-mono text-white font-semibold text-base tracking-tight hover:text-blue-400 transition-colors duration-200"
+          variants={navItemVariants}
+          initial="hidden"
+          animate="visible"
+          custom={0}
         >
           Jacopo Valsecchi
-        </a>
+        </motion.a>
 
         {/* Desktop links + language switcher */}
-        <div className="hidden sm:flex items-center gap-8">
+        <motion.div
+          className="hidden sm:flex items-center gap-8"
+          variants={navContentVariants}
+          initial="hidden"
+          animate="visible"
+        >
           <ul className="flex items-center gap-8">
             {navLinks.map((link) => {
               const id = link.href.slice(1)
               const isActive = activeId === id
               return (
-                <li key={link.href}>
+                <motion.li key={link.href} variants={navItemVariants}>
                   <a
                     href={link.href}
                     onClick={(e) => {
@@ -104,31 +134,34 @@ export default function Navbar() {
                   >
                     {navLabels[link.href] ?? link.label}
                   </a>
-                </li>
+                </motion.li>
               )
             })}
           </ul>
 
           {/* Language switcher */}
-          <div className="flex items-center gap-1 border border-white/10 rounded-lg p-1">
-            {LANGUAGES.map(({ code, flag, label }) => (
-              <button
-                key={code}
-                type="button"
-                onClick={() => setLanguage(code)}
-                aria-label={`Switch to ${label}`}
-                className={`flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-semibold transition-all duration-200 ${
-                  language === code
-                    ? 'bg-blue-600 text-white'
-                    : 'text-slate-400 hover:text-white hover:bg-white/5'
-                }`}
-              >
-                <span className="text-base leading-none">{flag}</span>
-                {label}
-              </button>
-            ))}
-          </div>
-        </div>
+          {/* <motion.div
+           className="flex items-center gap-1 border border-white/10 rounded-lg p-1"
+           variants={navItemVariants}
+         >
+           {LANGUAGES.map(({ code, flag, label }) => (
+             <button
+               key={code}
+               type="button"
+               onClick={() => setLanguage(code)}
+               aria-label={`Switch to ${label}`}
+               className={`flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-semibold transition-all duration-200 ${
+                 language === code
+                   ? 'bg-blue-600 text-white'
+                   : 'text-slate-400 hover:text-white hover:bg-white/5'
+               }`}
+             >
+               <span className="text-base leading-none">{flag}</span>
+               {label}
+             </button>
+           ))}
+         </motion.div> */}
+        </motion.div>
 
         {/* Hamburger button */}
         <button
@@ -208,6 +241,6 @@ export default function Navbar() {
           ))}
         </div>
       </div>
-    </header>
+    </motion.header>
   )
 }

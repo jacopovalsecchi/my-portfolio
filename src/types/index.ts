@@ -29,5 +29,5 @@ export interface Project {
 export interface Contact {
   email: string
   linkedIn: string
-  github: string
+  github?: string
 }

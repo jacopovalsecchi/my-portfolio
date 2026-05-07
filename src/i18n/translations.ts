@@ -23,6 +23,10 @@ export const translations = {
         Tools: 'Tools & Platforms',
       },
     },
+    projects: {
+      title: 'Recent Projects',
+      sectionLabel: 'Projects',
+    },
     experience: {
       title: 'Experience',
       present: 'Present',
@@ -57,6 +61,10 @@ export const translations = {
         Backend: 'Backend',
         Tools: 'Strumenti & Piattaforme',
       },
+    },
+    projects: {
+      title: 'Progetti Recenti',
+      sectionLabel: 'Progetti',
     },
     experience: {
       title: 'Esperienze',

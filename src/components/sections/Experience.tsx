@@ -1,40 +1,43 @@
-import { useEffect, useRef, useState } from 'react'
+import { motion } from 'framer-motion'
 import { experiences } from '../../data/experience'
 import type { Experience } from '../../types/experience'
 import { useLanguage } from '../../context/LanguageContext'
 import { translations } from '../../i18n/translations'
 
-function ExperienceCard({ experience, index, present }: { experience: Experience; index: number; present: string }) {
-  const ref = useRef<HTMLDivElement>(null)
-  const [visible, setVisible] = useState(false)
+const sectionHeadingVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
+}
 
-  useEffect(() => {
-    const el = ref.current
-    if (!el) return
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setVisible(true)
-          observer.disconnect()
-        }
-      },
-      { threshold: 0.15 },
-    )
-    observer.observe(el)
-    return () => observer.disconnect()
-  }, [])
+const timelineContainerVariants = {
+  hidden: {},
+  visible: {
+    transition: { staggerChildren: 0.15, delayChildren: 0.1 },
+  },
+}
 
+const entryVariants = {
+  hidden: { opacity: 0, x: -30 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.55, ease: 'easeOut' } },
+}
+
+function ExperienceCard({
+  experience,
+  index,
+  present,
+}: {
+  experience: Experience
+  index: number
+  present: string
+}) {
   const period = experience.period.end
     ? `${experience.period.start} – ${experience.period.end}`
     : `${experience.period.start} – ${present}`
 
   return (
-    <div
-      ref={ref}
-      className={`relative flex gap-6 transition-all duration-700 ease-out ${
-        visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
-      }`}
-      style={{ transitionDelay: `${index * 80}ms` }}
+    <motion.div
+      variants={entryVariants}
+      className="relative flex gap-6"
     >
       {/* Timeline dot + line */}
       <div className="flex flex-col items-center shrink-0">
@@ -80,7 +83,7 @@ function ExperienceCard({ experience, index, present }: { experience: Experience
           </div>
         )}
       </div>
-    </div>
+    </motion.div>
   )
 }
 
@@ -91,11 +94,25 @@ export default function Experience() {
   return (
     <section id="experience" className="py-20 bg-slate-900">
       <div className="max-w-4xl mx-auto px-4 sm:px-6">
-        <h2 className="text-3xl font-bold text-white mb-12 text-center tracking-tight">
+        {/* Heading */}
+        <motion.h2
+          className="text-3xl font-bold text-white mb-12 text-center tracking-tight"
+          variants={sectionHeadingVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-60px' }}
+        >
           {t.title}
-        </h2>
+        </motion.h2>
 
-        <div className="relative">
+        {/* Timeline entries with stagger */}
+        <motion.div
+          className="relative"
+          variants={timelineContainerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-60px' }}
+        >
           {experiences.map((exp, index) => (
             <ExperienceCard
               key={`${exp.company}-${exp.role}-${index}`}
@@ -104,7 +121,7 @@ export default function Experience() {
               present={t.present}
             />
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   )

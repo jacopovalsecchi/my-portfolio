@@ -7,13 +7,11 @@ export const experiences: Experience[] = [
     role: 'Web Developer',
     period: { start: '04/2025', end: null },
     description: [
-      'Designing and implementing data synchronization solutions between HubSpot and third-party software platforms.',
-      'Built an internal TypeScript/JavaScript automation tool to generate invoices by synchronizing data between Teamwork and Odoo.',
-      'R&D project to build an AI agent integrated with HubSpot to analyze upsell/cross-sell opportunities and churn risk using Spring and Mistral AI.',
-      'Developed custom JavaScript integration logic to synchronize data between HubSpot/DealHub and customer internal systems.',
-      'Migrated the ElixirSync integration from SAP C4C v1 to SAP C4C v2.',
+        'Development of internal tools to optimize company processes',
+        'Development and maintenance of a middleware application responsible for synchronizing data between HubSpot and third-party tools',
+        'Responsible for technical analysis and effort estimation'
     ],
-    technologies: ['TypeScript', 'JavaScript', 'HubSpot', 'Spring', 'Mistral AI', 'SAP C4C'],
+    technologies: ['TypeScript', 'JavaScript', 'HubSpot', 'Spring', 'Java', 'Apache Camel', 'JUnit', 'Docker', 'SAP C4C'],
   },
   {
     company: 'KPMG Business Services',
