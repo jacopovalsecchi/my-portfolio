@@ -19,7 +19,8 @@ export interface Skill {
 }
 
 export interface Project {
-  title: string
+  title: string,
+  company: string,
   description: string
   techStack: string[]
   githubUrl?: string

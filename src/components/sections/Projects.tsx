@@ -29,8 +29,11 @@ function ProjectCard({ project }: { project: Project }) {
       transition={{ type: 'spring', stiffness: 280, damping: 22 }}
       className="flex flex-col bg-white/5 backdrop-blur border border-white/10 rounded-xl p-6 hover:border-blue-500/30 hover:shadow-lg hover:shadow-blue-900/20 transition-colors duration-300"
     >
-      {/* Title */}
-      <h3 className="text-lg font-semibold text-white mb-3">{project.title}</h3>
+      {/* Title & Company */}
+      <div className="mb-3">
+        <h3 className="text-lg font-semibold text-white">{project.title}</h3>
+        <p className="font-mono text-xs text-blue-400/70 mt-0.5">{project.company}</p>
+      </div>
 
       {/* Description */}
       <p className="text-sm text-slate-400 leading-relaxed flex-1 mb-5">
@@ -78,7 +81,7 @@ export default function Projects() {
 
         {/* Cards */}
         <motion.div
-          className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-3xl mx-auto"
+          className="grid grid-cols-1 sm:grid-cols-2 gap-6"
           variants={gridContainerVariants}
           initial="hidden"
           whileInView="visible"
