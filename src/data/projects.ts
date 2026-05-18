@@ -13,7 +13,7 @@ export const projects: Project[] = [
     company: 'Elixir Solutions',
     description:
       'R&D project building an AI agent integrated with HubSpot to analyze upsell and cross-sell opportunities and detect churn risk using large language model inference.',
-    techStack: ['Spring', 'React', 'Mistral AI', 'HubSpot', 'Java', 'GraphQL'],
+    techStack: ['Spring', 'React', 'Next.js', 'Mistral AI', 'HubSpot', 'Java', 'GraphQL'],
   },
   {
     title: 'Credit Notes Creation Flow',
